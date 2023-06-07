@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PWA Push Notfication Test</title>
+    <link rel="icon" href="favicon.ico" />
+    <meta name="theme-color" content="#00E083" />
+    <!-- <meta property="og:image" content="logo512.png"> -->
+    <link rel="apple-touch-icon" href="logo192.png" />
+    <link rel="manifest" href="manifest.json" />
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <h1>How you doing? Is your health fine?</h1>
+    <p>Click the button below to get notified about your health</p>
+    <button id="notify">Enable Notfications</button>
+    <script>
+        alert("Script loaded");
+        // check if push notfications are granted
+        if (Notification.permission === 'granted') {
+            // disable the button
+            document.getElementById('notify').disabled = true;
+        }
+
+        // add event listener to the button
+        document.getElementById('notify').addEventListener('click', requestPermisions);
+
+        function requestPermisions() {
+            Notification.requestPermission(result => {
+                console.log(result)
+                if (result === 'granted') {
+                    alert('Permissions granted')
+                }
+                else {
+                    alert('Permissions denied')
+                }
+            });
+        }
+
+    </script>
+</body>
+
+</html>
